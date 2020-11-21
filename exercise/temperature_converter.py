@@ -4,9 +4,9 @@ def get_valid_input():
     \nTemperature: ")
     input_scale = input_temperature[-1].lower()
     input_temperature = input_temperature[0:-1]
-    if not (input_temperature.strip("-").isnumeric() and input_scale in ["c", "f"]):
+    if not (input_temperature.strip("-").replace(".", "").isnumeric() and input_scale in ["c", "f"]):
         input_temperature, input_scale = get_valid_input()
-    return float(input_temperature), input_scale
+    return input_temperature, input_scale
 
 
 def fahrenheit_to_celsius(t):
@@ -29,6 +29,7 @@ def celsius_to_fahrenheit(t):
 
 if __name__ == "__main__":
     temperature, scale = get_valid_input()
+    temperature = float(temperature)
 
     if scale == 'c':
         result = celsius_to_fahrenheit(temperature)
